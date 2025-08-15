@@ -1,69 +1,92 @@
-# React + TypeScript + Vite
+# Product Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive web application to manage products efficiently. This platform allows users to view, search, filter, edit, and delete products seamlessly with a clean UI and interactive components.
 
-Currently, two official plugins are available:
+### 📝 Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Project Overview
 
-## Expanding the ESLint configuration
+- Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Tech Stack
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Usage
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- License
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🎯 Project Overview
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This project is a Product Management Platform built with React, TypeScript, and Tailwind CSS. It fetches product data from a dummy API (https://dummyjson.com/products) and provides an interface for users to:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- View all products in a responsive grid.
+
+- Search products by name or category.
+
+- Filter products by category.
+
+- Edit product details with a live preview.
+
+- Delete products easily with confirmation alerts.
+
+- The platform emphasizes clean UI/UX, responsive design, and interactive buttons with gradients and hover effects.
+
+### ⚡ Features
+
+- Responsive Design: Works on desktop, tablet, and mobile.
+
+- Product CRUD: View, Edit, Delete products dynamically.
+
+- Search & Filter: Quickly find products by title or category.
+
+- Beautiful UI: Modern card layout with hover animations and gradient buttons.
+
+- Context API: State management for products across the app.
+
+### 🛠️ Tech Stack
+Layer	Technology
+Frontend	React, TypeScript
+Styling	Tailwind CSS
+Routing	React Router DOM
+State Mgmt	React Context API
+Data Source	DummyJSON API (fetch/axios)
+⚙️ Installation
+
+Clone the repository:
+
+git clone https://github.com/belyseing/-Product-Management-Platform.git
+
+- Install dependencies:
+
+- cd product-management-platform
+npm install
+
+
+- Start the development server:
+
+- npm start
+
+
+The app will be available at http://localhost:5173/.
+
+### 🚀 Usage
+
+- Open the application in your browser.
+
+- Browse through all products displayed in a grid layout.
+
+- Use the search bar to find products by title.
+
+- Filter products by category using the filter menu.
+
+- Click View on a product card to see details.
+
+- Click Edit to modify product details.
+
+- Click Delete to remove a product (confirmation required).
+
+### 📄 License
+
+This project is MIT Licensed. See LICENSE for more information.
+
