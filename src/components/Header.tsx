@@ -7,7 +7,7 @@ function Header() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between py-4">
           
-          {/* Logo/Brand */}
+         
           <div className="flex items-center space-x-3 cursor-pointer">
             <div className="p-2 bg-teal-100 rounded-lg">
               <SiCoinmarketcap className="text-2xl text-teal-600" />
@@ -17,7 +17,7 @@ function Header() {
             </h1>
           </div>
 
-          {/* Action Icons */}
+         
           <div className="flex items-center space-x-4">
             <button className="p-2 text-gray-600 hover:text-teal-600 rounded-full transition-colors duration-300">
               <FiSearch className="text-xl" />
