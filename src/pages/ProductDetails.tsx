@@ -14,23 +14,23 @@ const ProductDetails: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto p-6">
     
-      <button
-        onClick={() => navigate(-1)}
-        className="mb-6 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 shadow transition"
-      >
-        ← Back to Products
-      </button>
+       <button
+          onClick={() => navigate("/")}
+          className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 transition"
+        >
+          ← Back to Products
+        </button>
 
      
-      <div className="bg-white rounded-2xl shadow-lg p-6 md:flex md:gap-8">
+      <div className="bg-white mt-10 rounded-2xl shadow-lg p-6 md:flex md:gap-8">
        
-        <div className="md:w-1/2">
-          <img
-            src={product.thumbnail}
-            alt={product.title}
-            className="w-full h-96 object-cover rounded-xl shadow-md"
-          />
-        </div>
+      <div className="md:w-1/2 bg-gray-50 flex items-center justify-center p-6 rounded-2xl">
+      <img
+      src={product.thumbnail}
+      alt={product.title}
+      className="max-h-[600px] w-[400px] max-w-full object-contain rounded-xl shadow-md transition-transform duration-300"
+      />
+     </div>
 
        
         <div className="md:w-1/2 mt-6 md:mt-0 flex flex-col justify-between">
@@ -73,6 +73,9 @@ const ProductDetails: React.FC = () => {
           </div>
         </div>
       </div>
+
+
+
     </div>
   );
 };

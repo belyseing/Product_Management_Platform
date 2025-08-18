@@ -1,4 +1,4 @@
-// pages/EditProduct.tsx
+
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -68,104 +68,111 @@ const EditProduct: React.FC = () => {
   };
 
   return (
-    <div className="w-full pt-6">
-      <div className="flex justify-center items-center gap-2 mt-10">
-        <button
-          onClick={() => navigate(-1)}
-          className="mb-4 px-3 py-1 bg-gray-800 text-white rounded hover:bg-gray-600"
-        >
-          Back
-        </button>
-      </div>
+  <div className="w-full pt-6">
+  
+  <div className="max-w-6xl mx-auto px-4">
+    <button
+      onClick={() => navigate("/")}
+      className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 transition"
+    >
+      ← Back to Products
+    </button>
+  </div>
 
-    
-      <div className="mt-5 flex justify-center">
-        <img
-          src={formData.thumbnail}
-          alt={formData.title}
-          className="w-full max-w-3xl h-96 object-cover border rounded-lg"
-        />
-      </div>
+ 
+  <div className="bg-white mt-6 rounded-2xl shadow-lg p-6 max-w-6xl mx-auto md:flex md:gap-8">
+   
+   <div className="md:w-1/2 bg-gray-50 flex items-center justify-center p-6 rounded-2xl">
+      <img
+      src={product.thumbnail}
+      alt={product.title}
+      className="max-h-[600px] w-[400px] max-w-full object-contain rounded-xl shadow-md transition-transform duration-300"
+      />
+     </div>
 
-     
-      <div className="max-w-3xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-6">Edit {product.title}</h1>
+   
+    <div className="md:w-1/2 mt-6 md:mt-0">
+      <h1 className="text-3xl font-bold mb-4">Edit {product.title}</h1>
 
-        {error && <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">{error}</div>}
+      {error && <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">{error}</div>}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Title</label>
-            <input
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              className="w-full border border-gray-300 p-2 rounded"
-              required
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-1">Title</label>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            className="w-full border border-gray-300 p-2 rounded"
+            required
+          />
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Price</label>
-            <input
-              type="number"
-              name="price"
-              value={formData.price}
-              onChange={handleChange}
-              className="w-full border border-gray-300 p-2 rounded"
-              required
-              min="0"
-              step="0.01"
-            />
-          </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Price</label>
+          <input
+            type="number"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+            className="w-full border border-gray-300 p-2 rounded"
+            required
+            min="0"
+            step="0.01"
+          />
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Category</label>
-            <input
-              type="text"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="w-full border border-gray-300 p-2 rounded"
-              required
-            />
-          </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Category</label>
+          <input
+            type="text"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            className="w-full border border-gray-300 p-2 rounded"
+            required
+          />
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="w-full border border-gray-300 p-2 rounded"
-              rows={6}
-              required
-            ></textarea>
-          </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Description</label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            className="w-full border border-gray-300 p-2 rounded"
+            rows={6}
+            required
+          ></textarea>
+        </div>
 
-        
-          <div className="space-x-6">
-            <button
-              type="submit"
-              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 disabled:bg-green-300"
-              disabled={isLoading}
-            >
-              {isLoading ? "Updating..." : "Update Product"}
-            </button>
+        <div className="space-x-4">
+          <button
+            type="submit"
+            className="bg-teal-600 hover:bg-teal-500 text-white px-4 py-2 rounded
+             transition-all duration-200
+             shadow-md hover:shadow-lg"
+            disabled={isLoading}
+          >
+            {isLoading ? "Updating..." : "Update Product"}
+          </button>
 
-            <button
-              type="button"
-              onClick={() => navigate("/")}
-              className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600"
-              disabled={isLoading}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </div>
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-600"
+            disabled={isLoading}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
+
+
   );
 };
 

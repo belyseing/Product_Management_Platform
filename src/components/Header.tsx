@@ -1,7 +1,13 @@
 import { SiCoinmarketcap } from "react-icons/si";
 import { FiSearch, FiHeart, FiShoppingCart, FiUser } from "react-icons/fi";
+import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+
 
 function Header() {
+  const { cart } = useCart();
+  const navigate = useNavigate();
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
       <div className="container mx-auto px-6">
@@ -9,8 +15,8 @@ function Header() {
           
          
           <div className="flex items-center space-x-3 cursor-pointer">
-            <div className="p-2 bg-teal-100 rounded-lg">
-              <SiCoinmarketcap className="text-2xl text-teal-600" />
+            <div className="p-2 bg-teal-300 rounded-lg">
+              <SiCoinmarketcap className="text-2xl text-teal-700" />
             </div>
             <h1 className="text-2xl font-bold text-gray-800 hover:text-teal-600 transition-colors duration-300">
               QuickPick
@@ -25,11 +31,16 @@ function Header() {
             <button className="p-2 text-gray-600 hover:text-red-500 rounded-full transition-colors duration-300">
               <FiHeart className="text-xl" />
             </button>
-            <button className="p-2 text-gray-600 hover:text-teal-600 rounded-full transition-colors duration-300 relative">
+             <button
+            onClick={() => navigate("/CartPage")}
+              className="p-2 text-gray-600 hover:text-teal-600 rounded-full transition-colors duration-300 relative"
+            >
               <FiShoppingCart className="text-xl" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-xs text-white font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                3
-              </span>
+              {cart.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-xs text-white font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {cart.length}
+                </span>
+              )}
             </button>
             <button className="p-2 text-gray-600 hover:text-indigo-500 rounded-full transition-colors duration-300">
               <FiUser className="text-xl" />

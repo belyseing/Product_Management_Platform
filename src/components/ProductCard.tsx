@@ -2,6 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../context/ProductContext";
 import type { Product } from "../context/ProductContext";
+import { FaEdit, FaShoppingCart } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { useCart } from "../context/CartContext";
 
 interface ProductCardProps {
   product: Product;
@@ -20,24 +24,34 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
   const handleView = () => navigate(`/product/${product.id}`, { state: { product } });
 
-  return (
-    <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-    
-      <div className="relative overflow-hidden h-60">
-        <img 
-          src={product.thumbnail} 
-          alt={product.title} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-       
-        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-semibold text-amber-600 shadow-sm">
-          ⭐ {product.rating || 4.5}/5
-        </div>
-      </div>
+  const { addToCart } = useCart();
+  const handleAddToCart = () => {
+    addToCart(product.id);
+  };
 
-    
+  const { cart} = useCart();
+
+const isInCart = cart.some((item) => item.id === product.id);
+
+  return (
+    <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl duration-300 ease-in-out hover:bg-white transition-all transform hover:-translate-y-1">
+     <div className="relative overflow-hidden h-60 w-full bg-gray-100 flex items-center justify-center">
+  <img 
+    src={product.thumbnail} 
+    alt={product.title} 
+    className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105"
+  />
+  
+
+  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-black/5 to-transparent" />
+  
+
+  <div className="absolute top-3 right-3 flex items-center bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-semibold text-amber-600 shadow-md">
+    <span className="mr-1">⭐</span>
+    <span>{product.rating?.toFixed(1) || '4.5'}/5</span>
+  </div>
+
+</div>
       <div className="p-5">
         <div className="flex justify-between items-start">
           <div>
@@ -58,52 +72,67 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         <p className="mt-3 text-gray-600 text-sm line-clamp-2">{product.description}</p>
 
-       
-        <div className="mt-6 grid grid-cols-3 gap-2">
-          
-          <button
-            onClick={handleView}
-            className="relative overflow-hidden group/btn bg-gradient-to-br from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 text-white px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-1.5"
-          >
-            <span className="relative z-10 flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              <span>View</span>
-            </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-lg"></span>
-          </button>
-          
-          
-          <button
-            onClick={handleEdit}
-            className="relative overflow-hidden group/btn bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-1.5"
-          >
-            <span className="relative z-10 flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-              <span>Edit</span>
-            </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-teal-600 to-emerald-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-lg"></span>
-          </button>
-          
-          
-          <button
-            onClick={handleDelete}
-            className="relative overflow-hidden group/btn bg-gradient-to-br from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-1.5"
-          >
-            <span className="relative z-10 flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-              <span>Delete</span>
-            </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-pink-600 to-rose-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-lg"></span>
-          </button>
+        <div className="mt-6 grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-3 gap-2 col-span-2">
+            <button
+              onClick={handleView}
+              className="relative overflow-hidden group/view border border-indigo-100 bg-indigo-50 text-indigo-600 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-md flex items-center justify-center gap-1.5 hover:bg-indigo-100 hover:text-indigo-700"
+            >
+              <span className="relative z-10 flex items-center">
+                <FaEye className="text-current"/>
+                <span className="ml-2">View</span>
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-indigo-100 to-indigo-200 opacity-0 group-hover/view:opacity-100 transition-opacity duration-300 rounded-lg"></span>
+            </button>
+            
+            <button
+              onClick={handleEdit}
+              className="relative overflow-hidden group/edit border border-emerald-100 bg-emerald-50 text-emerald-600 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-md flex items-center justify-center gap-1.5 hover:bg-emerald-100 hover:text-emerald-700"
+            >
+              <span className="relative z-10 flex items-center">
+                <FaEdit className="text-current"/>
+                <span className="ml-2">Edit</span>
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-emerald-100 to-emerald-200 opacity-0 group-hover/edit:opacity-100 transition-opacity duration-300 rounded-lg"></span>
+            </button>
+            
+            <button
+              onClick={handleDelete}
+              className="relative overflow-hidden group/delete border border-rose-100 bg-rose-50 text-rose-600 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-md flex items-center justify-center gap-1.5 hover:bg-rose-100 hover:text-rose-700"
+            >
+              <span className="relative z-10 flex items-center">
+                <RiDeleteBinLine className="text-current"/>
+                <span className="ml-2">Delete</span>
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-rose-100 to-rose-200 opacity-0 group-hover/delete:opacity-100 transition-opacity duration-300 rounded-lg"></span>
+            </button>
+          </div>
+                 <button
+  onClick={handleAddToCart}
+  disabled={isInCart}
+  className={`col-span-2 relative overflow-hidden text-white px-4 py-3 rounded-lg font-medium transition-all duration-300 shadow-md flex items-center justify-center gap-2
+    ${
+      isInCart
+       ? "bg-red-500  shadow-inner cursor-default" 
+    : "bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white shadow-md"
+    }`}
+>
+  <span className="relative z-10 flex items-center">
+    <FaShoppingCart className="text-white"/>
+    <span className="ml-2">{isInCart ? "Added to Cart" : "Add to Cart"}</span>
+  </span>
+
+  {!isInCart && (
+    <span className="absolute inset-0 bg-gradient-to-r from-teal-600 to-emerald-700 opacity-0 group-hover/cart:opacity-100 transition-opacity duration-300 rounded-lg"></span>
+  )}
+
+  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold bg-white/20 px-2 py-1 rounded-full">
+    ${product.price.toLocaleString()}
+  </span>
+</button>
+
+
         </div>
-        
       </div>
     </div>
   );
