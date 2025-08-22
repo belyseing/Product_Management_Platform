@@ -58,7 +58,7 @@ const EditProduct: React.FC = () => {
       updateProduct({ ...product, ...updatedProduct });
 
       alert("Product updated successfully!");
-      navigate("/");
+      navigate("/productList");
     } catch (err) {
       console.error("Error updating product:", err);
       setError("Failed to update product.");
@@ -72,7 +72,7 @@ const EditProduct: React.FC = () => {
   
   <div className="max-w-6xl mx-auto px-4">
     <button
-      onClick={() => navigate("/")}
+      onClick={() => navigate("/productList")}
       className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 transition"
     >
       ← Back to Products
@@ -160,7 +160,7 @@ const EditProduct: React.FC = () => {
 
           <button
             type="button"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/productList")}
             className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-600"
             disabled={isLoading}
           >

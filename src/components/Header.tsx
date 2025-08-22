@@ -42,9 +42,11 @@ function Header() {
                 </span>
               )}
             </button>
-            <button className="p-2 text-gray-600 hover:text-indigo-500 rounded-full transition-colors duration-300">
+             <p>emilys</p>
+            <button className="p-2 bg-teal-400  text-gray-500 rounded-full transition-colors duration-300">
               <FiUser className="text-xl" />
             </button>
+             
           </div>
         </div>
       </div>

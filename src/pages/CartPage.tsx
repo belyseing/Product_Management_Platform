@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import {  FaTrash, FaShoppingCart, FaMinus, FaPlus } from "react-icons/fa";
+import {  FaShoppingCart, FaMinus, FaPlus } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
+import { RiDeleteBinLine } from "react-icons/ri";
+
 
 function CartPage() {
   const { cart, increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
@@ -11,7 +13,6 @@ function CartPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-5xl">
-    
        <div className="max-w-6xl mx-auto px-4  mt-6 ">
     <button
       onClick={() => navigate("/")}
@@ -81,7 +82,7 @@ function CartPage() {
                     onClick={() => removeFromCart(item.id)}
                     className="flex items-center gap-2 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors duration-150"
                   >
-                    <FaTrash className="text-sm" />
+                    < RiDeleteBinLine className="text-sm" />
                     <span className="text-sm font-medium">Remove</span>
                   </button>
                 </div>

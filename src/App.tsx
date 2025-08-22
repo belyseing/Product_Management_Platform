@@ -6,6 +6,8 @@ import EditProduct from "./pages/EditProduct";
 import { ProductProvider } from "./context/ProductContext";
 import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/CartPage";
+import LoginPage from "./pages/Login";
+
 
 
 function App() {
@@ -14,7 +16,8 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<ProductList />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/productList" element={<ProductList />} />
           <Route path="/edit/:id" element={<EditProduct />} />
           <Route path="/product/:id" element={<ProductDetails />} /> 
            <Route path="/cartpage" element={<CartPage />} />
