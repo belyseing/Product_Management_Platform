@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useProducts } from "../context/ProductContext";
-import type { Product } from "../context/ProductContext";
+import type { Product } from "../types/Product";
 
 interface LocationState {
   product: Product;
